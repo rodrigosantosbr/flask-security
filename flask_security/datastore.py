@@ -239,8 +239,8 @@ class SQLAlchemyUserDatastore(SQLAlchemyDatastore, UserDatastore):
             from sqlalchemy.orm import joinedload
             user_model_query = user_model_query.options(joinedload('roles'))
 
-        if self._is_numeric(identifier):
-            return user_model_query.get(identifier)
+        #if self._is_numeric(identifier):
+        #    return user_model_query.get(identifier)
         for attr in get_identity_attributes():
             query = alchemyFn.lower(getattr(self.user_model, attr)) \
                 == alchemyFn.lower(identifier)
