@@ -76,10 +76,9 @@ def login():
 
     if form.validate_on_submit():
         try:
-            login_user(form.email, remember=form.remember.data)
+            login_user(form.user, remember=form.remember.data)
         except Exception as e:
             print(e)
-            login_user(form.user, remember=form.remember.data)
         after_this_request(_commit)
 
         if not request.is_json:
