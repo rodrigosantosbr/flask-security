@@ -68,7 +68,7 @@ def _check_token():
     if user and user.is_authenticated:
         app = current_app._get_current_object()
         _request_ctx_stack.top.user = user
-        identity_changed.send(app, identity=Identity(user.id))
+        identity_changed.send(app, identity=Identity(str(user.id)))
         return True
 
     return False
@@ -84,7 +84,7 @@ def _check_http_auth():
         _security.datastore.commit()
         app = current_app._get_current_object()
         _request_ctx_stack.top.user = user
-        identity_changed.send(app, identity=Identity(user.id))
+        identity_changed.send(app, identity=Identity(str(user.id)))
         return True
 
     return False
